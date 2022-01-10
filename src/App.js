@@ -4,6 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 import Header from "./componenets/header/Header";
 import SideBar from "./componenets/sidebar/SideBar";
+import Chat from "./componenets/chat/Chat";
 function App() {
   return (
     <div className="app">
@@ -11,7 +12,7 @@ function App() {
       <AppBody>
         <SideBar />
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<Chat/>} />
         </Routes>
       </AppBody>
     </div>
