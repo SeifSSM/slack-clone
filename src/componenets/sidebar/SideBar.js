@@ -14,10 +14,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddIcon from "@mui/icons-material/Add";
 import SideBarOptions from "./sidebarOptions/SideBarOptions";
 import { SidebarContainer, SidebarHeader, SidebarInfo } from "./SideBar.styles";
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function SideBar() {
-  const [channels, loading, error] = useCollection(db.collection("rooms"));
+  const [channels] = useCollection(db.collection("rooms"));
+  const [user] = useAuthState(auth);
 
   return (
     <SidebarContainer>
@@ -26,7 +28,7 @@ function SideBar() {
           <h2>NOVA LABS HQ</h2>
           <h3>
             <FiberManualRecordIcon />
-            Seif Sallam
+            {user?.displayName}
           </h3>
         </SidebarInfo>
         <CreateIcon />
@@ -44,11 +46,7 @@ function SideBar() {
       <hr />
       <SideBarOptions Icon={AddIcon} addChannelOption title="Add Channel" />
       {channels?.docs.map((doc) => (
-        <SideBarOptions
-          key={doc.id}
-          id={doc.id}
-          title={doc.data().name}
-        />
+        <SideBarOptions key={doc.id} id={doc.id} title={doc.data().name} />
       ))}
     </SidebarContainer>
   );

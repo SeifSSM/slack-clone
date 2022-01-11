@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-
+import Avatar from '@mui/material/Avatar';
 
 export const HeaderSearch = styled.div`
   flex: 0.4;
@@ -54,10 +53,9 @@ export const HeaderRight = styled.div`
     margin-right: 20px;
   }
 `;
-export const HeaderAvatar = styled(AccountCircleIcon)`
+export const HeaderAvatar = styled(Avatar)`
   cursor: pointer;
-
-  :hover {
+      :hover {
     opacity: 0.8;
   }
 `;
